@@ -1,29 +1,53 @@
 <template>
-  <div class="wrapper" @click="update">
-    <image :src="logoUrl" class="logo"></image>
-    <text class="title">Hello {{target}}</text>
-    <text class="desc">Now, let's use vue to build your weex app.</text>
+  <div class="app-wrapper">
+    <home-header></home-header>
+    <!-- <top-channel></top-channel> -->
+    <tab-bar></tab-bar>
   </div>
 </template>
 
 <style>
-  .wrapper { align-items: center; margin-top: 120px; }
-  .title { padding-top:40px; padding-bottom: 40px; font-size: 48px; }
-  .logo { width: 360px; height: 156px; }
-  .desc { padding-top: 20px; color:#888; font-size: 24px;}
+  /* 全局 */
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333333;
+  }
+</style>
+<style scoped>
+  .app-wrapper {
+    background-color: #f4f4f4;
+  }
+  .r-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 </style>
 
+
 <script>
+  import util from './assets/util';
+  import tabBar from './assets/components/tabBar.vue';
+  import Header from './assets/components/header.vue'
   export default {
+    // 组件
+    "components": {
+      'home-header': Header,
+      'tab-bar': tabBar
+    },
+    // 生命周期 组件创建
+    created () {
+      util.initIconFont();
+    },
     data: {
-      logoUrl: 'http://img1.vued.vanthink.cn/vued08aa73a9ab65dcbd360ec54659ada97c.png',
-      target: 'World'
+      
     },
     methods: {
-      update: function (e) {
-        this.target = 'Weex'
-        console.log('target:', this.target)
-      }
+      
     }
   }
 </script>
